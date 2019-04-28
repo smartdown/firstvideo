@@ -1,0 +1,9 @@
+.step {
+  border: 5px solid chartreuse;
+  border-radius: 6px;
+  background: aliceblue;
+}
+
+#Overview.step {
+  background: indigo;
+}

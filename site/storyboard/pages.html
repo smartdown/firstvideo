@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+
+  <title>Basic Example Slides, as Pages</title>
+
+
+  <link rel=stylesheet href="https://unpkg.com/smartdown/dist/lib/smartdown.css">
+  <link rel=stylesheet href="https://unpkg.com/smartdown/dist/lib/fonts.css">
+  <script src="https://unpkg.com/smartdown/dist/lib/smartdown.js"></script>
+
+
+
+<!--
+  <link
+    rel=stylesheet
+    href="https://localhost:4000/lib/fonts.css">
+  <link
+    rel=stylesheet
+    href="https://localhost:4000/lib/smartdown.css">
+  <script
+    src="https://localhost:4000/lib/smartdown.js">
+  </script>
+
+ -->
+  <style>
+  .smartdown-container {
+    xwidth: 100%;
+    xheight: 100%;
+  }
+  </style>
+
+</head>
+
+<body
+  style="margin:0;padding:0;background:white;">
+  <div
+    class="container-fluid smartdown-theme-blog"
+    style="margin:0;padding:5px;">
+    <div
+      class="smartdown-container"
+      id="smartdown-output">
+    </div>
+  </div>
+
+<!--
+  <script src="https://localhost:4000/lib/calc_handlers.js"></script>
+  <script src="https://localhost:4000/lib/starter.js"></script>
+  <script>
+    window.smartdownDefaultHome = 'GeneEpochDisease';
+    window.smartdownBaseURL = 'https://localhost:4000/';
+    window.smartdownResourceURL = 'https://unpkg.com/smartdown-gallery/resources/';
+    window.smartdownStarter();
+  </script>
+-->
+
+
+
+  <script src="https://unpkg.com/smartdown/dist/lib/calc_handlers.js"></script>
+
+   <!-- <script src="https://unpkg.com/smartdown/dist/lib/starter.js"></script> -->
+   <script src="../js/starter.js"></script>
+<script>
+window.smartdownDefaultHome = 'Home';
+var path = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
+window.smartdownRawPrefix = window.location.origin + path;
+console.log('window.smartdownRawPrefix', window.smartdownRawPrefix);
+window.smartdownBaseURL = 'https://unpkg.com/smartdown/dist/';
+window.smartdownResourceURL = 'https://unpkg.com/smartdown-gallery/resources/';
+window.smartdownStarter();
+</script>
+
+
+</body>
+</html>
+

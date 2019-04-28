@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Basic Smartdown and impress.js Example</title>
+  <meta
+    name="description"
+    content="Authoring impress.js presentations using Smartdown"
+  />
+  <meta
+    name="author"
+    content="Daniel B Keith"
+  />
+
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="32x32"
+    href="../images/favicon-32x32.png"
+  >
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="96x96"
+    href="../images/favicon-96x96.png"
+  >
+  <link
+    rel="icon"
+    type="image/png"
+    sizes="16x16"
+    href="../images/favicon-16x16.png"
+  >
+
+  <link
+    href="../css/smartdown-impress.css"
+    rel="stylesheet"
+  />
+
+  <link
+    href="storyboard.css"
+    rel="stylesheet"
+  />
+
+
+  <link
+    rel=stylesheet
+    href="https://unpkg.com/smartdown/dist/lib/fonts.css">
+  <link
+    rel=stylesheet
+    href="https://unpkg.com/smartdown/dist/lib/smartdown.css">
+  <script
+    src="https://unpkg.com/smartdown/dist/lib/smartdown.js">
+  </script>
+
+<!--
+  <link
+    rel=stylesheet
+    href="https://localhost:4000/lib/fonts.css">
+  <link
+    rel=stylesheet
+    href="https://localhost:4000/lib/smartdown.css">
+  <script
+    src="https://localhost:4000/lib/smartdown.js">
+  </script>
+ -->
+
+</head>
+
+<body class="impress-not-supported smartdown-outer-container smartdown-theme-blog">
+  <script
+    src="../js/impress.js">
+  </script>
+  <div
+    id="smartdown-container"
+    class="smartdown-container"
+  >
+    <div
+      id="impress"
+      data-transition-duration="1000"
+    >
+      <div
+        id="manifest"
+        class="step slide smartdown manifest loading"
+        src="./Manifest.md"
+      >
+      </div>
+    </div>
+  </div>
+
+  <div id="impress-toolbar"></div>
+  <div id="impress-help"></div>
+
+  <div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+  </div>
+
+  <script src="../js/smartdown_impress.js"></script>
+</body>
+
+</html>
