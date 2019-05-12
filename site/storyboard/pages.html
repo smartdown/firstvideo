@@ -62,15 +62,21 @@
 
   <script src="https://unpkg.com/smartdown/dist/lib/calc_handlers.js"></script>
 
-   <!-- <script src="https://unpkg.com/smartdown/dist/lib/starter.js"></script> -->
-   <script src="../js/starter.js"></script>
+  <!-- <script src="https://unpkg.com/smartdown/dist/lib/starter.js"></script> -->
+  <script src="../js/starter.js"></script>
+
 <script>
-window.smartdownDefaultHome = 'Home';
+window.smartdownDefaultHome = 'CardIndex';
 var path = window.location.pathname.split('/').slice(0, -1).join('/') + '/';
 window.smartdownRawPrefix = window.location.origin + path;
 console.log('window.smartdownRawPrefix', window.smartdownRawPrefix);
 window.smartdownBaseURL = 'https://unpkg.com/smartdown/dist/';
 window.smartdownResourceURL = 'https://unpkg.com/smartdown-gallery/resources/';
+
+window.smartdownPostLoadMutator = function(sourceText, cardKey, cardURL, defaultHome) {
+  return sourceText + '\n\n---\n\n[Index](:@CardIndex)';
+};
+
 window.smartdownStarter();
 </script>
 

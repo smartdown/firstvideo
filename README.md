@@ -61,6 +61,7 @@ npm run ghpublish
 ## Versions
 
 **0.0.1** - Basic skeleton of video site, including index page, storyboard, some audio, and some raw source material.
+**0.0.2** - Build a more coherent presentation oriented towards a 3-minute video and an elevator-style presentation. Enhance the pages.html so that there is an index and a button back to the index added to each card.
 
 
 
