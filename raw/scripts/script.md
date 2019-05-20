@@ -48,14 +48,13 @@
 > The result is vibrant, interactive, explorable explanations that create a rich learning experience.  For you, that means Less Syntax and More ‘Splainin’.   Faster to produce.
 
 
-———————————————————————
+---
 
-
-Share
-Collaborate
-Integrate
-No Server Required
-Cheese
+- Share
+- Collaborate
+- Integrate
+- No Server Required
+- Cheese
 
 
 Integrable
@@ -66,11 +65,11 @@ Collaboration-friendly
 Unlike Jupyter notebooks, Smartdown documents are very compatible with collaboration systems like GitHub and Glitch.com. This is because a Smartdown document is text (see above).
 
 No Server Required (so you can work offline)
-Many systems require an internet connection to author and to view a document. For example, Google Docs, Evernote, Jupyter. Sometimes this is a necessary property (e.g., Python numpy doesn't yet run in a browser, or some big dataset won't fit in a browser); sometimes it is a business decision based upon Vendor Lockin where the goal is to get a customer to invest their ideas and effort into a creation that is ultimately trapped in a particular vendor's system.
+> Many systems require an internet connection to author and to view a document. For example, Google Docs, Evernote, Jupyter. Sometimes this is a necessary property (e.g., Python numpy doesn't yet run in a browser, or some big dataset won't fit in a browser); sometimes it is a business decision based upon Vendor Lockin where the goal is to get a customer to invest their ideas and effort into a creation that is ultimately trapped in a particular vendor's system.
 
 
 
-——————————————————————————-
+---
 How Smartdown can help change the world
 My goals are to enable more people to express and teach their expertise and perspective via the web by creating a gradual slope between plain text and rich interactive explanations and understanding.
 
