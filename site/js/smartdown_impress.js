@@ -13,9 +13,11 @@ var themeName = '';
 
 var defaultHome = 'Home';
 
+
 var baseURL = 'https://unpkg.com/smartdown/dist/';
 var resourceURL = 'https://unpkg.com/smartdown-gallery/resources/';
 var rawPrefix = window.location.origin + window.location.pathname;
+var flatten = (new URLSearchParams(window.location.search)).get('flatten');
 var outputDivSelector = '#smartdown-output';
 var postLoadMutator = null;
 var media = {
@@ -81,6 +83,13 @@ const linkRules = [
 
 
 const cardNameToDivMap = {};
+
+const smartdownOuterContainer = document.getElementById('smartdown-outer-container');
+const impressContainer = document.getElementById('impress');
+const smartdownContainer = document.getElementById('smartdown-container');
+if (flatten) {
+  smartdownOuterContainer.classList.add('flatten-' + flatten);
+}
 
 function applyFrontmatter(element, frontMatter) {
   if (frontMatter.frontmatter) {
@@ -296,19 +305,50 @@ function applySmartdown() {
 
       element.innerHTML = element.md;
       window.smartdown.setSmartdown(element.md, element, function() {
-        element.classList.remove('loading');
         recursiveApply(done);
       });
     }
   }
 
   recursiveApply(function() {
-    if (!api) {
+    if (!api && !flatten) {
       api = impress();
       api.init();
     }
+
+    const fallbackDivs = document.querySelectorAll( ".fallback-message" );
+    fallbackDivs.forEach((div) => {
+      div.style.display = 'none';
+    });
+
+    const loadingDivs = document.querySelectorAll( ".loading" );
+    loadingDivs.forEach((div) => {
+      div.classList.remove('loading');
+    });
+
+    if (flatten === 'horizontal') {
+      const padding = 200;
+      const firstDiv = smartdownDivs[0];
+      const firstDivWidth = firstDiv.offsetWidth;
+      const totalWidth = (firstDivWidth + padding) * smartdownDivs.length;
+
+      impressContainer.style.width = `${totalWidth}px`;
+    }
+
+    if (window.location.hash) {
+      const element = document.getElementById(window.location.hash.slice(1));
+      if (element) {
+        if (flatten === 'vertical') {
+          element.scrollIntoView();
+        }
+        else if (flatten === 'horizontal') {
+          element.scrollIntoView();
+        }
+      }
+    }
+
     window.setTimeout(_ => {
-      window.smartdown.startAutoplay(document.getElementById('smartdown-container'));
+      window.smartdown.startAutoplay(smartdownContainer);
     }, 10);
   });
 }
@@ -320,8 +360,12 @@ function cardLoader(cardKey) {
     const keyParts = cardKey.split(':');
     impressKey = keyParts[keyParts.length - 1];
   }
-  // console.log('cardLoader', cardKey, impressKey);
-  api.goto(impressKey);
+  if (flatten) {
+    window.location.hash = impressKey;
+  }
+  else {
+    api.goto(impressKey);
+  }
 }
 
 loadManifests(function() {

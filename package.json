@@ -1,6 +1,6 @@
 {
   "name": "smartdown-firstvideo",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Video Storyboarding with Smartdown/Impress",
   "main": "index.js",
   "directories": {

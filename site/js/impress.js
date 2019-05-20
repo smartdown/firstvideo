@@ -1,5 +1,6 @@
 // This file was automatically generated from files in src/ directory.
 
+/*! Licensed under MIT License - http://github.com/impress/impress.js */
 /**
  * impress.js
  *
@@ -9,7 +10,7 @@
  *
  * Copyright 2011-2012 Bartek Szopka (@bartaz), 2016-2018 Henrik Ingo (@henrikingo)
  *
- * Released under the MIT and GPL Licenses.
+ * Released under the MIT License.
  *
  * ------------------------------------------------
  *  author:  Bartek Szopka, Henrik Ingo
@@ -1304,6 +1305,16 @@
         // triggered for the first slide, so that's where code flow continues.
     }, false );
 
+    document.addEventListener( "impress:autoplay:pause", function( event ) {
+        status = "paused";
+        reloadTimeout( event );
+    }, false );
+
+    document.addEventListener( "impress:autoplay:play", function( event ) {
+        status = "playing";
+        reloadTimeout( event );
+    }, false );
+
     // If default autoplay time was defined in the presentation root, or
     // in this step, set timeout.
     var reloadTimeout = function( event ) {
@@ -1320,7 +1331,7 @@
         reloadTimeout( event );
     }, false );
 
-    document.addEventListener( "impress:substep:stepleaveaborted", function( event ) {
+    document.addEventListener( "impress:substep:enter", function( event ) {
         reloadTimeout( event );
     }, false );
 
@@ -1341,13 +1352,6 @@
     /*** Toolbar plugin integration *******************************************/
     var status = "not clicked";
     var toolbarButton = null;
-
-    // Copied from core impress.js. Good candidate for moving to a utilities collection.
-    var triggerEvent = function( el, eventName, detail ) {
-        var event = document.createEvent( "CustomEvent" );
-        event.initCustomEvent( eventName, true, true, detail );
-        el.dispatchEvent( event );
-    };
 
     var makeDomElement = function( html ) {
         var tempDiv = document.createElement( "div" );
@@ -1407,11 +1411,133 @@
             }
         } );
 
-        triggerEvent( toolbar, "impress:toolbar:appendChild",
+        util.triggerEvent( toolbar, "impress:toolbar:appendChild",
                       { group: 10, element: toolbarButton } );
     };
 
 } )( document );
+
+/**
+ * Blackout plugin
+ *
+ * Press b or . to hide all slides, and b or . again to show them.
+ * Also navigating to a different slide will show them again (impress:stepleave).
+ *
+ * Copyright 2014 @Strikeskids
+ * Released under the MIT license.
+ */
+/* global document */
+
+( function( document ) {
+    "use strict";
+
+    var canvas = null;
+    var blackedOut = false;
+    var util = null;
+    var root = null;
+    var api = null;
+
+    // While waiting for a shared library of utilities, copying these 2 from main impress.js
+    var css = function( el, props ) {
+        var key, pkey;
+        for ( key in props ) {
+            if ( props.hasOwnProperty( key ) ) {
+                pkey = pfx( key );
+                if ( pkey !== null ) {
+                    el.style[ pkey ] = props[ key ];
+                }
+            }
+        }
+        return el;
+    };
+
+    var pfx = ( function() {
+
+        var style = document.createElement( "dummy" ).style,
+            prefixes = "Webkit Moz O ms Khtml".split( " " ),
+            memory = {};
+
+        return function( prop ) {
+            if ( typeof memory[ prop ] === "undefined" ) {
+
+                var ucProp  = prop.charAt( 0 ).toUpperCase() + prop.substr( 1 ),
+                    props   = ( prop + " " + prefixes.join( ucProp + " " ) + ucProp ).split( " " );
+
+                memory[ prop ] = null;
+                for ( var i in props ) {
+                    if ( style[ props[ i ] ] !== undefined ) {
+                        memory[ prop ] = props[ i ];
+                        break;
+                    }
+                }
+
+            }
+
+            return memory[ prop ];
+        };
+
+    } )();
+
+    var removeBlackout = function() {
+        if ( blackedOut ) {
+            css( canvas, {
+                display: "block"
+            } );
+            blackedOut = false;
+            util.triggerEvent( root, "impress:autoplay:play", {} );
+        }
+    };
+
+    var blackout = function() {
+        if ( blackedOut ) {
+            removeBlackout();
+        } else {
+            css( canvas, {
+                display: ( blackedOut = !blackedOut ) ? "none" : "block"
+            } );
+            blackedOut = true;
+            util.triggerEvent( root, "impress:autoplay:pause", {} );
+        }
+    };
+
+    // Wait for impress.js to be initialized
+    document.addEventListener( "impress:init", function( event ) {
+        api = event.detail.api;
+        util = api.lib.util;
+        root = event.target;
+        canvas = root.firstElementChild;
+        var gc = api.lib.gc;
+        var util = api.lib.util;
+
+        gc.addEventListener( document, "keydown", function( event ) {
+
+            // Accept b or . -> . is sent by presentation remote controllers
+            if ( event.keyCode === 66 || event.keyCode === 190 ) {
+                event.preventDefault();
+                if ( !blackedOut ) {
+                    blackout();
+                } else {
+                    removeBlackout();
+                }
+            }
+        }, false );
+
+        gc.addEventListener( document, "keyup", function( event ) {
+
+            // Accept b or . -> . is sent by presentation remote controllers
+            if ( event.keyCode === 66 || event.keyCode === 190 ) {
+                event.preventDefault();
+            }
+        }, false );
+
+    }, false );
+
+    document.addEventListener( "impress:stepleave", function() {
+        removeBlackout();
+    }, false );
+
+} )( document );
+
 
 /**
  * Extras Plugin
@@ -1517,7 +1643,7 @@
         api = event.detail.api;
         var gc = api.lib.gc;
 
-        var selectors = [ "input[type=text]", "textarea", "select", "[contenteditable=true]" ];
+        var selectors = [ "input", "textarea", "select", "[contenteditable=true]" ];
         for ( var selector of selectors ) {
             var elements = document.querySelectorAll( selector );
             if ( !elements ) {
@@ -1538,6 +1664,64 @@
 
     document.addEventListener( "impress:stepleave", function() {
         document.activeElement.blur();
+    }, false );
+
+} )( document );
+
+
+/**
+ * Fullscreen plugin
+ *
+ * Press F5 to enter fullscreen and ESC to exit fullscreen mode.
+ *
+ * Copyright 2019 @giflw
+ * Released under the MIT license.
+ */
+/* global document */
+
+( function( document ) {
+    "use strict";
+
+    function enterFullscreen() {
+        var elem = document.documentElement;
+        if ( !document.fullscreenElement ) {
+            elem.requestFullscreen();
+        }
+    }
+
+    function exitFullscreen() {
+        if ( document.fullscreenElement ) {
+            document.exitFullscreen();
+        }
+    }
+
+    // Wait for impress.js to be initialized
+    document.addEventListener( "impress:init", function( event ) {
+        var api = event.detail.api;
+        var root = event.target;
+        var gc = api.lib.gc;
+        var util = api.lib.util;
+
+        gc.addEventListener( document, "keydown", function( event ) {
+
+            // 116 (F5) is sent by presentation remote controllers
+            if ( event.code === "F5" ) {
+                event.preventDefault();
+                enterFullscreen();
+                util.triggerEvent( root.querySelector( ".active" ), "impress:steprefresh" );
+            }
+
+            // 27 (Escape) is sent by presentation remote controllers
+            if ( event.key === "Escape" || event.key === "F5" ) {
+                event.preventDefault();
+                exitFullscreen();
+                util.triggerEvent( root.querySelector( ".active" ), "impress:steprefresh" );
+            }
+        }, false );
+
+        util.triggerEvent( document, "impress:help:add",
+            { command: "F5 / ESC", text: "Fullscreen: Enter / Exit", row: 200 } );
+
     }, false );
 
 } )( document );
@@ -3773,8 +3957,11 @@
             if ( el ) {
 
                 // Send a message to others, that we aborted a stepleave event.
-                // Autoplay will reload itself from this, as there won't be a stepenter event now.
                 triggerEvent( step, "impress:substep:stepleaveaborted",
+                              { reason: "next", substep: el } );
+
+                // Autoplay uses this for reloading itself
+                triggerEvent( step, "impress:substep:enter",
                               { reason: "next", substep: el } );
 
                 // Returning false aborts the stepleave event
@@ -3786,6 +3973,10 @@
             if ( el ) {
                 triggerEvent( step, "impress:substep:stepleaveaborted",
                               { reason: "prev", substep: el } );
+
+                triggerEvent( step, "impress:substep:leave",
+                              { reason: "prev", substep: el } );
+
                 return false;
             }
         }
@@ -3847,7 +4038,6 @@
     }, false );
 
 } )( document, window );
-
 
 /**
  * Support for swipe and tap on touch devices

@@ -1,9 +1,12 @@
 ---
-impress:
-  data-x: -3000
-  data-y: -2200
-  data-rel-x: 1200
-  data-rel-y: 0
+smartdown:
+  files:
+    - ./Overview.md
+    - ./Home.md
+    - ./WhatIsSmartdown.md
+    - ./WhyIsItCool.md
+    - ./HowCanItChangeTheWorld.md
+    - ./Cheese.md
 ---
 
 # Home1

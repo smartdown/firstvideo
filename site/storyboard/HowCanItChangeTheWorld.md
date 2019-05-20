@@ -1,7 +1,7 @@
 ---
 impress:
   data-x: -1800
-  data-y: 800
+  data-y: 1300
   data-rel-x: 1200
   data-rel-y: 0
 ---
