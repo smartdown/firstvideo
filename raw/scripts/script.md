@@ -1,51 +1,35 @@
-- Dan Narrates all of this.
 
-- Dejargonize this.
+Are you an Explainer? Do you have great ideas you want to share? Maybe you’re a teacher creating unique learning experiences for your students.  Maybe you’re a scientist and you want to share your research with your peers.  Maybe you’re a student who wants to share your science project.
 
-> Are you an Explainer? Do you have great ideas you want to share? Maybe you’re a teacher creating unique learning experiences for your students.  Maybe you’re a scientist who wants to share your research with your peers.  Maybe you’re a student who wants to share your science project.
+The goal of Smartdown is to give explainers everywhere the tools they need to teach and share their knowledge on the web.
 
-- Dan speaking in front of his computer, skip to dan in front of classroom (tweed jacket?), skip to Dan in lab coat with science 	stuff in lab like environment.  Show Andre collecting water samples at Mt. Pisgah.
+The obvious way to explain things is with words.  Writing is great and it’s easy to start a blog. You can even add a few pictures or a video to make your ideas clearer.
 
-> The goal of Smartdown is to give explainers everywhere the tools they need to teach and share their knowledge and ultimately facilitate the open exchange of ideas.
+But you’re not any ordinary explainer.  You want to give your audience something they can interact with.  A place where they can play, test hypotheses, answer questions, and explore.
 
-- Back to Dan in front of computer.
+Currently, building this kind of interactive web content takes web developers, time and money. For most people, this kind of content seems out of reach.  
 
-> The obvious way to explain things is with words.  Writing is great and it’s easy to start a blog. You can even add a few pictures or a video to make your ideas clearer.
+But with smartdown you can create a compelling and interactive web page that’s written mostly in text. And, you can do it quickly and you can do it for free.
 
-- Dan in front of computer.  Animation of words dropping into the frame from above.
+First a little background on web pages. Here's what you write to make a web page. And here’s what people see when they look at this page in a web browser. Web pages are written in something called HTML, and as you can see, it isn’t much fun to read or write.  Even web developers find it exhausting.
 
-- Screen capture of Wordpress adding pictures to blog post.
+Fortunately, there’s an easier way to write web pages.  You can use Markdown.  Here’s what you would write in Markdown to create the same page. 
+Hmm.  Which would you rather write?
 
-> But you’re not any ordinary explainer.  You want to give your audience something they can interact with.  A place where they can play, test hypotheses, answer questions, and explore.
+Markdown is used everywhere, from blogging systems like Wordpress to development tools like GitHub.   Here, let’s add a picture to this page.  We just paste in the url for the picture and it shows up. Easy.  Markdown also makes it easy to add links and videos to your pages.  Unfortunately, that’s where the power of markdown ends.
 
-- Wordpress screen shot wipes left.
+Fortunately, that’s where Smartdown picks up.  Smartdown is an extension of Markdown.  Like Markdown, Smartdown pages are mostly text.  But Smartdown also makes  it easy to add interactive content such as charts, graphs, mathematical formatting and featherweight programs called playables.  
 
-- Video of user at computer using interactive smartdown app (wildthinks page?)
-
-- screen capture:  exploding dots app, high five demo, Smartdown logo? playing with tree app, disclosable popup?  (our best screen candy)
-
-> Unfortunately, you’re not a programmer or a web designer and you don’t have a bucket of money to pay a developer to implement your ideas.  (The problem is the system, not the author.)
-
-- Can we get a real bucket of money?  Or do we do a drawing/animation or use monopoly money?
-
-- With smartdown you don’t need a bucket of money for development.  You can create a compelling and interactive web page that’s written mostly in text.
-
-> First a little background on web pages.  Most web pages are written in HTML.  Here’s some html code,  And here’s what that html code looks like when it gets rendered as a web page. You can see that HTML isn’t much fun to read or write.  Even web developers find it exhausting.
+The interaction between cells and playables.  Need an example. of this.
 
 
-- show html for page left, rendered page on right
-
-
-> Fortunately, there’s an easier way to write web pages.  You can use Markdown.  Here’s what you would write in Markdown to create the same page. Unlike HTML, it’s easy to read and write because it’s mostly text.  Markdown is used everywhere, from blogging systems like Wordpress to development tools like GitHub.   Here, let’s add a picture to this page.  We just paste in the url for the picture and it shows up. Easy.  Markdown also makes it easy to add links and videos to your pages.  Unfortunately, that’s where the power of markdown ends.
-
-- Add a middle panel with Markdown. screen shot showing markdown and rendered page side by side.  Move in Wordpress and GitHub logos over screenshot.  Screen capture of adding a picture and it being rendered on right?
-
-
-> Fortunately, that’s where Smartdown picks up.  Smartdown is an extension of Markdown so smartdown pages are text pages.  But Smartdown also makes  it easy to add interactive content such as charts, graphs, and featherweight programs called playables.  Currently, you can  include many well known web technologies into your page, and you can add them using simple text syntax.  Add D3, Plotly, P5JS apps for interactive dynamic visualization.  Use MathJax in your text for technical writing, add GraphViz drawings, or Plotly and Leaflet for mapping.  Smartdown also gives you a few simple ways to the control the formatting of your page and create pop windows all without complicated HTML tags.
+Smartdown also gives you a few simple ways to the control the formatting of your page and create pop windows all without complicated HTML tags.
 
 - Need screen shots of all these things.
 
-> The result is vibrant, interactive, explorable explanations that create a rich learning experience.  For you, that means Less Syntax and More ‘Splainin’.   Faster to produce.
+Fast -> useful for quick stuff, LAB NOTES, all these things can have interactive elements.
+
+The result is vibrant, interactive, explorable explanations that create a rich learning experience.  For you, that means Less Syntax and More ‘Splainin’.  
 
 
 ---
