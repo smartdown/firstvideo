@@ -2,6 +2,8 @@
 
 Trying out different ways to fit Smartdown into 3-5 minutes. They are potentially different pitches for different audiences, but each has its own structure and logic (theoretically). Perhaps we can pick one for the video, or create a useful composite.
 
+The theme below is structured around describing Smartdown in sort of a FAQ style.
+
 #### Who
 
 > Hi, I'm Dan and I like to make things with software. Sometimes I do it for money, sometimes for the joy of experimenting and inventing. For the last 4 years, I've been creating a new kind of thing that am calling Smartdown.
