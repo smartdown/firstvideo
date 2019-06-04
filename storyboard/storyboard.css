@@ -1,0 +1,14 @@
+.step {
+  border: 5px solid lightblue;
+  border-radius: 6px;
+  background: aliceblue;
+}
+
+#Overview.step {
+  background: indigo;
+}
+
+.smartdown-outer-container.flatten-vertical #Overview.step.loading {
+  display: none;
+}
+
